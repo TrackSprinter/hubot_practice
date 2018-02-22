@@ -212,3 +212,14 @@ Add the subdomain hubot should connect to. If you web URL looks like
 
 You may want to get comfortable with `heroku logs` and `heroku restart` if
 you're having issues.
+
+Turn off warnings related to heroku
+$ ./bin/hubot
+hubot-sample> [Fri Jun 05 2015 11:41:52 GMT+0900 (JST)] ERROR hubot-heroku-alive included, but missing HUBOT_HEROKU_KEEPALIVE_URL. `heroku config:set HUBOT_HEROKU_KEEPALIVE_URL=$(heroku apps:info -s  | grep web_url | cut -d= -f2)`
+[Fri Jun 05 2015 11:41:52 GMT+0900 (JST)] INFO Using default redis on localhost:6379
+
+cd <your-hubot-project-dir>
+npm uninstall hubot-heroku-keepalive --save
+Then find and remove the line that contains "hubot-heroku-keepalive" from file "external-scripts.json".
+
+Run "bin/hubot" again.
